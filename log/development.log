@@ -1,0 +1,954 @@
+  [1m[36m (1.5ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35m (2.4ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateFlights (20130711164943)
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36m (0.7ms)[0m  [1mCREATE TABLE "flights" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "departure" datetime, "arrival" datetime, "destination" varchar(255), "baggage_allowance" decimal, "capacity" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20130711164943"]]
+  [1m[36m (1.9ms)[0m  [1mcommit transaction[0m
+Migrating to CreateSeats (20130711165045)
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36m (1.3ms)[0m  [1mCREATE TABLE "seats" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "flight_id" integer, "name" varchar(255), "baggage" decimal, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20130711165045"]]
+  [1m[36m (1.5ms)[0m  [1mcommit transaction[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.9ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+
+
+Started GET "/" for 127.0.0.1 at 2013-07-12 00:52:39 +0800
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendered /Users/zhanghao/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/gems/2.0.0/gems/railties-4.0.0/lib/rails/templates/rails/welcome/index.html.erb (2.9ms)
+Completed 200 OK in 93ms (Views: 49.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/flights/1" for 127.0.0.1 at 2013-07-12 00:52:51 +0800
+Processing by FlightsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mFlight Load (0.4ms)[0m  SELECT "flights".* FROM "flights" WHERE "flights"."id" = ? LIMIT 1  [["id", "1"]]
+Completed 404 Not Found in 10ms
+
+ActiveRecord::RecordNotFound (Couldn't find Flight with id=1):
+  app/controllers/flights_controller.rb:67:in `set_flight'
+
+
+  Rendered /Users/zhanghao/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/gems/2.0.0/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.9ms)
+  Rendered /Users/zhanghao/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/gems/2.0.0/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/_trace.erb (2.2ms)
+  Rendered /Users/zhanghao/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/gems/2.0.0/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (3.0ms)
+  Rendered /Users/zhanghao/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/gems/2.0.0/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (45.5ms)
+
+
+Started GET "/flights" for 127.0.0.1 at 2013-07-12 00:53:11 +0800
+Processing by FlightsController#index as HTML
+  [1m[36mFlight Load (0.3ms)[0m  [1mSELECT "flights".* FROM "flights"[0m
+  Rendered flights/index.html.erb within layouts/application (7.2ms)
+Completed 200 OK in 2229ms (Views: 2222.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/flights.css?body=1" for 127.0.0.1 at 2013-07-12 00:53:14 +0800
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-07-12 00:53:14 +0800
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-07-12 00:53:14 +0800
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-07-12 00:53:14 +0800
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-07-12 00:53:14 +0800
+
+
+Started GET "/assets/seats.css?body=1" for 127.0.0.1 at 2013-07-12 00:53:14 +0800
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2013-07-12 00:53:14 +0800
+
+
+Started GET "/assets/flights.js?body=1" for 127.0.0.1 at 2013-07-12 00:53:14 +0800
+
+
+Started GET "/assets/seats.js?body=1" for 127.0.0.1 at 2013-07-12 00:53:14 +0800
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-07-12 00:53:14 +0800
+
+
+Started GET "/flights/new" for 127.0.0.1 at 2013-07-12 00:53:17 +0800
+Processing by FlightsController#new as HTML
+  Rendered flights/_form.html.erb (322.4ms)
+  Rendered flights/new.html.erb within layouts/application (356.6ms)
+Completed 200 OK in 367ms (Views: 365.8ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/flights" for 127.0.0.1 at 2013-07-12 00:53:27 +0800
+Processing by FlightsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"RgyzSKU2BIztrCx+DjJpjT3Bdb9OpOCknNtvVWGm/+E=", "flight"=>{"departure(1i)"=>"2013", "departure(2i)"=>"7", "departure(3i)"=>"11", "departure(4i)"=>"16", "departure(5i)"=>"53", "arrival(1i)"=>"2013", "arrival(2i)"=>"7", "arrival(3i)"=>"11", "arrival(4i)"=>"16", "arrival(5i)"=>"53", "destination"=>"aaaaa", "baggage_allowance"=>"aaaa", "capacity"=>"11"}, "commit"=>"Create Flight"}
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36mSQL (39.1ms)[0m  [1mINSERT INTO "flights" ("arrival", "baggage_allowance", "capacity", "created_at", "departure", "destination", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["arrival", Thu, 11 Jul 2013 16:53:00 UTC +00:00], ["baggage_allowance", #<BigDecimal:7fa59c2a3228,'0.0',9(9)>], ["capacity", 11], ["created_at", Thu, 11 Jul 2013 16:53:27 UTC +00:00], ["departure", Thu, 11 Jul 2013 16:53:00 UTC +00:00], ["destination", "aaaaa"], ["updated_at", Thu, 11 Jul 2013 16:53:27 UTC +00:00]]
+  [1m[35m (12.9ms)[0m  commit transaction
+Redirected to http://0.0.0.0:3000/flights/1
+Completed 302 Found in 68ms (ActiveRecord: 52.2ms)
+
+
+Started GET "/flights/1" for 127.0.0.1 at 2013-07-12 00:53:27 +0800
+Processing by FlightsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mFlight Load (0.2ms)[0m  [1mSELECT "flights".* FROM "flights" WHERE "flights"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  Rendered flights/show.html.erb within layouts/application (4.4ms)
+Completed 200 OK in 31ms (Views: 28.0ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/flights" for 127.0.0.1 at 2013-07-12 00:53:29 +0800
+Processing by FlightsController#index as HTML
+  [1m[35mFlight Load (0.2ms)[0m  SELECT "flights".* FROM "flights"
+  Rendered flights/index.html.erb within layouts/application (4.4ms)
+Completed 200 OK in 19ms (Views: 17.7ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/flights/new" for 127.0.0.1 at 2013-07-12 00:53:30 +0800
+Processing by FlightsController#new as HTML
+  Rendered flights/_form.html.erb (46.2ms)
+  Rendered flights/new.html.erb within layouts/application (47.6ms)
+Completed 200 OK in 60ms (Views: 58.6ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/flights" for 127.0.0.1 at 2013-07-12 00:53:36 +0800
+Processing by FlightsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"RgyzSKU2BIztrCx+DjJpjT3Bdb9OpOCknNtvVWGm/+E=", "flight"=>{"departure(1i)"=>"2013", "departure(2i)"=>"7", "departure(3i)"=>"11", "departure(4i)"=>"16", "departure(5i)"=>"53", "arrival(1i)"=>"2013", "arrival(2i)"=>"7", "arrival(3i)"=>"11", "arrival(4i)"=>"16", "arrival(5i)"=>"53", "destination"=>"bbbbb", "baggage_allowance"=>"bbbbb", "capacity"=>"4"}, "commit"=>"Create Flight"}
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.7ms)[0m  INSERT INTO "flights" ("arrival", "baggage_allowance", "capacity", "created_at", "departure", "destination", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)  [["arrival", Thu, 11 Jul 2013 16:53:00 UTC +00:00], ["baggage_allowance", #<BigDecimal:7fa59dcd68e8,'0.0',9(9)>], ["capacity", 4], ["created_at", Thu, 11 Jul 2013 16:53:36 UTC +00:00], ["departure", Thu, 11 Jul 2013 16:53:00 UTC +00:00], ["destination", "bbbbb"], ["updated_at", Thu, 11 Jul 2013 16:53:36 UTC +00:00]]
+  [1m[36m (1.1ms)[0m  [1mcommit transaction[0m
+Redirected to http://0.0.0.0:3000/flights/2
+Completed 302 Found in 14ms (ActiveRecord: 1.9ms)
+
+
+Started GET "/flights/2" for 127.0.0.1 at 2013-07-12 00:53:36 +0800
+Processing by FlightsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35mFlight Load (0.5ms)[0m  SELECT "flights".* FROM "flights" WHERE "flights"."id" = ? LIMIT 1  [["id", "2"]]
+  Rendered flights/show.html.erb within layouts/application (1.1ms)
+Completed 200 OK in 17ms (Views: 13.6ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-07-12 00:53:36 +0800
+
+
+Started GET "/assets/seats.css?body=1" for 127.0.0.1 at 2013-07-12 00:53:36 +0800
+
+
+Started GET "/assets/flights.css?body=1" for 127.0.0.1 at 2013-07-12 00:53:36 +0800
+
+
+Started GET "/assets/seats.js?body=1" for 127.0.0.1 at 2013-07-12 00:53:36 +0800
+
+
+Started GET "/assets/flights.js?body=1" for 127.0.0.1 at 2013-07-12 00:53:36 +0800
+
+
+Started GET "/flights" for 127.0.0.1 at 2013-07-12 00:53:37 +0800
+Processing by FlightsController#index as HTML
+  [1m[36mFlight Load (0.5ms)[0m  [1mSELECT "flights".* FROM "flights"[0m
+  Rendered flights/index.html.erb within layouts/application (5.5ms)
+Completed 200 OK in 15ms (Views: 13.4ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/flights/new" for 127.0.0.1 at 2013-07-12 00:53:39 +0800
+Processing by FlightsController#new as HTML
+  Rendered flights/_form.html.erb (132.7ms)
+  Rendered flights/new.html.erb within layouts/application (134.4ms)
+Completed 200 OK in 143ms (Views: 142.5ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/flights" for 127.0.0.1 at 2013-07-12 00:53:45 +0800
+Processing by FlightsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"RgyzSKU2BIztrCx+DjJpjT3Bdb9OpOCknNtvVWGm/+E=", "flight"=>{"departure(1i)"=>"2013", "departure(2i)"=>"7", "departure(3i)"=>"11", "departure(4i)"=>"16", "departure(5i)"=>"53", "arrival(1i)"=>"2013", "arrival(2i)"=>"7", "arrival(3i)"=>"11", "arrival(4i)"=>"16", "arrival(5i)"=>"53", "destination"=>"cccc", "baggage_allowance"=>"cccc", "capacity"=>"7"}, "commit"=>"Create Flight"}
+  [1m[35m (4.1ms)[0m  begin transaction
+  [1m[36mSQL (0.8ms)[0m  [1mINSERT INTO "flights" ("arrival", "baggage_allowance", "capacity", "created_at", "departure", "destination", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["arrival", Thu, 11 Jul 2013 16:53:00 UTC +00:00], ["baggage_allowance", #<BigDecimal:7fa59cbf54e8,'0.0',9(9)>], ["capacity", 7], ["created_at", Thu, 11 Jul 2013 16:53:45 UTC +00:00], ["departure", Thu, 11 Jul 2013 16:53:00 UTC +00:00], ["destination", "cccc"], ["updated_at", Thu, 11 Jul 2013 16:53:45 UTC +00:00]]
+  [1m[35m (3.6ms)[0m  commit transaction
+Redirected to http://0.0.0.0:3000/flights/3
+Completed 302 Found in 19ms (ActiveRecord: 8.5ms)
+
+
+Started GET "/flights/3" for 127.0.0.1 at 2013-07-12 00:53:45 +0800
+Processing by FlightsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mFlight Load (0.2ms)[0m  [1mSELECT "flights".* FROM "flights" WHERE "flights"."id" = ? LIMIT 1[0m  [["id", "3"]]
+  Rendered flights/show.html.erb within layouts/application (2.8ms)
+Completed 200 OK in 25ms (Views: 23.0ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-07-12 00:53:45 +0800
+
+
+Started GET "/assets/seats.js?body=1" for 127.0.0.1 at 2013-07-12 00:53:45 +0800
+
+
+Started GET "/assets/flights.js?body=1" for 127.0.0.1 at 2013-07-12 00:53:45 +0800
+
+
+Started GET "/assets/seats.css?body=1" for 127.0.0.1 at 2013-07-12 00:53:45 +0800
+
+
+Started GET "/assets/flights.css?body=1" for 127.0.0.1 at 2013-07-12 00:53:45 +0800
+
+
+Started GET "/flights" for 127.0.0.1 at 2013-07-12 00:53:46 +0800
+Processing by FlightsController#index as HTML
+  [1m[35mFlight Load (0.3ms)[0m  SELECT "flights".* FROM "flights"
+  Rendered flights/index.html.erb within layouts/application (5.2ms)
+Completed 200 OK in 25ms (Views: 23.0ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/flights/new" for 127.0.0.1 at 2013-07-12 00:53:48 +0800
+Processing by FlightsController#new as HTML
+  Rendered flights/_form.html.erb (41.1ms)
+  Rendered flights/new.html.erb within layouts/application (51.0ms)
+Completed 200 OK in 137ms (Views: 135.9ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/flights" for 127.0.0.1 at 2013-07-12 00:53:54 +0800
+Processing by FlightsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"RgyzSKU2BIztrCx+DjJpjT3Bdb9OpOCknNtvVWGm/+E=", "flight"=>{"departure(1i)"=>"2013", "departure(2i)"=>"7", "departure(3i)"=>"11", "departure(4i)"=>"16", "departure(5i)"=>"53", "arrival(1i)"=>"2013", "arrival(2i)"=>"7", "arrival(3i)"=>"11", "arrival(4i)"=>"16", "arrival(5i)"=>"53", "destination"=>"dddd", "baggage_allowance"=>"dddd", "capacity"=>"16"}, "commit"=>"Create Flight"}
+  [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.7ms)[0m  INSERT INTO "flights" ("arrival", "baggage_allowance", "capacity", "created_at", "departure", "destination", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)  [["arrival", Thu, 11 Jul 2013 16:53:00 UTC +00:00], ["baggage_allowance", #<BigDecimal:7fa59dd6ead0,'0.0',9(9)>], ["capacity", 16], ["created_at", Thu, 11 Jul 2013 16:53:54 UTC +00:00], ["departure", Thu, 11 Jul 2013 16:53:00 UTC +00:00], ["destination", "dddd"], ["updated_at", Thu, 11 Jul 2013 16:53:54 UTC +00:00]]
+  [1m[36m (1.2ms)[0m  [1mcommit transaction[0m
+Redirected to http://0.0.0.0:3000/flights/4
+Completed 302 Found in 19ms (ActiveRecord: 2.0ms)
+
+
+Started GET "/flights/4" for 127.0.0.1 at 2013-07-12 00:53:54 +0800
+Processing by FlightsController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[35mFlight Load (0.2ms)[0m  SELECT "flights".* FROM "flights" WHERE "flights"."id" = ? LIMIT 1  [["id", "4"]]
+  Rendered flights/show.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 23ms (Views: 21.0ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/seats.css?body=1" for 127.0.0.1 at 2013-07-12 00:53:54 +0800
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-07-12 00:53:54 +0800
+
+
+Started GET "/assets/seats.js?body=1" for 127.0.0.1 at 2013-07-12 00:53:54 +0800
+
+
+Started GET "/assets/flights.js?body=1" for 127.0.0.1 at 2013-07-12 00:53:54 +0800
+
+
+Started GET "/assets/flights.css?body=1" for 127.0.0.1 at 2013-07-12 00:53:54 +0800
+
+
+Started GET "/flights" for 127.0.0.1 at 2013-07-12 00:53:55 +0800
+Processing by FlightsController#index as HTML
+  [1m[36mFlight Load (0.2ms)[0m  [1mSELECT "flights".* FROM "flights"[0m
+  Rendered flights/index.html.erb within layouts/application (5.5ms)
+Completed 200 OK in 15ms (Views: 14.3ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/seats" for 127.0.0.1 at 2013-07-12 00:54:03 +0800
+Processing by SeatsController#index as HTML
+  [1m[35mSeat Load (0.3ms)[0m  SELECT "seats".* FROM "seats"
+  Rendered seats/index.html.erb within layouts/application (4.7ms)
+Completed 200 OK in 54ms (Views: 44.4ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/assets/flights.js?body=1" for 127.0.0.1 at 2013-07-12 00:54:03 +0800
+
+
+Started GET "/assets/seats.js?body=1" for 127.0.0.1 at 2013-07-12 00:54:03 +0800
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-07-12 00:54:04 +0800
+
+
+Started GET "/assets/seats.css?body=1" for 127.0.0.1 at 2013-07-12 00:54:04 +0800
+
+
+Started GET "/assets/flights.css?body=1" for 127.0.0.1 at 2013-07-12 00:54:04 +0800
+
+
+Started GET "/seats/new" for 127.0.0.1 at 2013-07-12 00:54:05 +0800
+Processing by SeatsController#new as HTML
+  Rendered seats/_form.html.erb (149.8ms)
+  Rendered seats/new.html.erb within layouts/application (162.9ms)
+Completed 200 OK in 185ms (Views: 182.7ms | ActiveRecord: 0.2ms)
+
+
+Started POST "/seats" for 127.0.0.1 at 2013-07-12 00:54:15 +0800
+Processing by SeatsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"RgyzSKU2BIztrCx+DjJpjT3Bdb9OpOCknNtvVWGm/+E=", "seat"=>{"flight_id"=>"9", "name"=>"AAAA", "baggage"=>"AAAA"}, "commit"=>"Create Seat"}
+  [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (6.0ms)[0m  INSERT INTO "seats" ("baggage", "created_at", "flight_id", "name", "updated_at") VALUES (?, ?, ?, ?, ?)  [["baggage", #<BigDecimal:7fa59dd348f8,'0.0',9(9)>], ["created_at", Thu, 11 Jul 2013 16:54:15 UTC +00:00], ["flight_id", 9], ["name", "AAAA"], ["updated_at", Thu, 11 Jul 2013 16:54:15 UTC +00:00]]
+  [1m[36m (4.9ms)[0m  [1mcommit transaction[0m
+Redirected to http://0.0.0.0:3000/seats/1
+Completed 302 Found in 25ms (ActiveRecord: 11.0ms)
+
+
+Started GET "/seats/1" for 127.0.0.1 at 2013-07-12 00:54:15 +0800
+Processing by SeatsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mSeat Load (0.3ms)[0m  SELECT "seats".* FROM "seats" WHERE "seats"."id" = ? LIMIT 1  [["id", "1"]]
+  Rendered seats/show.html.erb within layouts/application (2.4ms)
+Completed 200 OK in 37ms (Views: 31.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/flights.css?body=1" for 127.0.0.1 at 2013-07-12 00:54:15 +0800
+
+
+Started GET "/assets/flights.js?body=1" for 127.0.0.1 at 2013-07-12 00:54:15 +0800
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-07-12 00:54:15 +0800
+
+
+Started GET "/assets/seats.css?body=1" for 127.0.0.1 at 2013-07-12 00:54:15 +0800
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-07-12 00:54:15 +0800
+
+
+Started GET "/assets/seats.js?body=1" for 127.0.0.1 at 2013-07-12 00:54:15 +0800
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-07-12 00:54:15 +0800
+
+
+Started GET "/seats" for 127.0.0.1 at 2013-07-12 00:54:16 +0800
+Processing by SeatsController#index as HTML
+  [1m[36mSeat Load (0.3ms)[0m  [1mSELECT "seats".* FROM "seats"[0m
+  Rendered seats/index.html.erb within layouts/application (3.9ms)
+Completed 200 OK in 16ms (Views: 14.8ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/seats/new" for 127.0.0.1 at 2013-07-12 00:54:18 +0800
+Processing by SeatsController#new as HTML
+  Rendered seats/_form.html.erb (4.5ms)
+  Rendered seats/new.html.erb within layouts/application (5.9ms)
+Completed 200 OK in 28ms (Views: 26.5ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/seats" for 127.0.0.1 at 2013-07-12 00:54:24 +0800
+Processing by SeatsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"RgyzSKU2BIztrCx+DjJpjT3Bdb9OpOCknNtvVWGm/+E=", "seat"=>{"flight_id"=>"12", "name"=>"BBB", "baggage"=>"BBB"}, "commit"=>"Create Seat"}
+  [1m[35m (1.6ms)[0m  begin transaction
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "seats" ("baggage", "created_at", "flight_id", "name", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["baggage", #<BigDecimal:7fa59db9b780,'0.0',9(9)>], ["created_at", Thu, 11 Jul 2013 16:54:24 UTC +00:00], ["flight_id", 12], ["name", "BBB"], ["updated_at", Thu, 11 Jul 2013 16:54:24 UTC +00:00]]
+  [1m[35m (6.3ms)[0m  commit transaction
+Redirected to http://0.0.0.0:3000/seats/2
+Completed 302 Found in 27ms (ActiveRecord: 8.4ms)
+
+
+Started GET "/seats/2" for 127.0.0.1 at 2013-07-12 00:54:24 +0800
+Processing by SeatsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mSeat Load (0.3ms)[0m  [1mSELECT "seats".* FROM "seats" WHERE "seats"."id" = ? LIMIT 1[0m  [["id", "2"]]
+  Rendered seats/show.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 23ms (Views: 11.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/flights.css?body=1" for 127.0.0.1 at 2013-07-12 00:54:24 +0800
+
+
+Started GET "/assets/flights.js?body=1" for 127.0.0.1 at 2013-07-12 00:54:24 +0800
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-07-12 00:54:24 +0800
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-07-12 00:54:24 +0800
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-07-12 00:54:24 +0800
+
+
+Started GET "/assets/seats.css?body=1" for 127.0.0.1 at 2013-07-12 00:54:24 +0800
+
+
+Started GET "/assets/seats.js?body=1" for 127.0.0.1 at 2013-07-12 00:54:24 +0800
+
+
+Started GET "/seats" for 127.0.0.1 at 2013-07-12 00:54:25 +0800
+Processing by SeatsController#index as HTML
+  [1m[35mSeat Load (0.2ms)[0m  SELECT "seats".* FROM "seats"
+  Rendered seats/index.html.erb within layouts/application (3.3ms)
+Completed 200 OK in 20ms (Views: 18.3ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/seats/new" for 127.0.0.1 at 2013-07-12 00:54:26 +0800
+Processing by SeatsController#new as HTML
+  Rendered seats/_form.html.erb (16.7ms)
+  Rendered seats/new.html.erb within layouts/application (20.0ms)
+Completed 200 OK in 36ms (Views: 35.0ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/seats" for 127.0.0.1 at 2013-07-12 00:54:34 +0800
+Processing by SeatsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"RgyzSKU2BIztrCx+DjJpjT3Bdb9OpOCknNtvVWGm/+E=", "seat"=>{"flight_id"=>"20", "name"=>"CCCC", "baggage"=>"CCCC"}, "commit"=>"Create Seat"}
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "seats" ("baggage", "created_at", "flight_id", "name", "updated_at") VALUES (?, ?, ?, ?, ?)  [["baggage", #<BigDecimal:7fa59e227068,'0.0',9(9)>], ["created_at", Thu, 11 Jul 2013 16:54:34 UTC +00:00], ["flight_id", 20], ["name", "CCCC"], ["updated_at", Thu, 11 Jul 2013 16:54:34 UTC +00:00]]
+  [1m[36m (2.6ms)[0m  [1mcommit transaction[0m
+Redirected to http://0.0.0.0:3000/seats/3
+Completed 302 Found in 14ms (ActiveRecord: 3.3ms)
+
+
+Started GET "/seats/3" for 127.0.0.1 at 2013-07-12 00:54:34 +0800
+Processing by SeatsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[35mSeat Load (0.2ms)[0m  SELECT "seats".* FROM "seats" WHERE "seats"."id" = ? LIMIT 1  [["id", "3"]]
+  Rendered seats/show.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 29ms (Views: 27.4ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-07-12 00:54:34 +0800
+
+
+Started GET "/assets/flights.css?body=1" for 127.0.0.1 at 2013-07-12 00:54:34 +0800
+
+
+Started GET "/assets/seats.js?body=1" for 127.0.0.1 at 2013-07-12 00:54:34 +0800
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-07-12 00:54:34 +0800
+
+
+Started GET "/assets/flights.js?body=1" for 127.0.0.1 at 2013-07-12 00:54:34 +0800
+
+
+Started GET "/assets/seats.css?body=1" for 127.0.0.1 at 2013-07-12 00:54:34 +0800
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-07-12 00:54:34 +0800
+
+
+Started GET "/seats" for 127.0.0.1 at 2013-07-12 00:54:35 +0800
+Processing by SeatsController#index as HTML
+  [1m[36mSeat Load (0.6ms)[0m  [1mSELECT "seats".* FROM "seats"[0m
+  Rendered seats/index.html.erb within layouts/application (8.6ms)
+Completed 200 OK in 23ms (Views: 21.4ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/flight" for 127.0.0.1 at 2013-07-12 01:44:17 +0800
+
+ActionController::RoutingError (No route matches [GET] "/flight"):
+  actionpack (4.0.0) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.0.0) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.0.0) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.0.0) lib/rails/rack/logger.rb:21:in `block in call'
+  activesupport (4.0.0) lib/active_support/tagged_logging.rb:67:in `block in tagged'
+  activesupport (4.0.0) lib/active_support/tagged_logging.rb:25:in `tagged'
+  activesupport (4.0.0) lib/active_support/tagged_logging.rb:67:in `tagged'
+  railties (4.0.0) lib/rails/rack/logger.rb:21:in `call'
+  actionpack (4.0.0) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.0.0) lib/active_support/cache/strategy/local_cache.rb:83:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.0.0) lib/action_dispatch/middleware/static.rb:64:in `call'
+  railties (4.0.0) lib/rails/engine.rb:511:in `call'
+  railties (4.0.0) lib/rails/application.rb:97:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /Users/zhanghao/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/2.0.0/webrick/httpserver.rb:138:in `service'
+  /Users/zhanghao/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/2.0.0/webrick/httpserver.rb:94:in `run'
+  /Users/zhanghao/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/2.0.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /Users/zhanghao/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/gems/2.0.0/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.2ms)
+  Rendered /Users/zhanghao/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/gems/2.0.0/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/routes/_route.html.erb (3.7ms)
+  Rendered /Users/zhanghao/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/gems/2.0.0/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/routes/_table.html.erb (217.6ms)
+  Rendered /Users/zhanghao/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/gems/2.0.0/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (269.2ms)
+
+
+Started GET "/flight/1" for 127.0.0.1 at 2013-07-12 01:44:28 +0800
+
+ActionController::RoutingError (No route matches [GET] "/flight/1"):
+  actionpack (4.0.0) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.0.0) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.0.0) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.0.0) lib/rails/rack/logger.rb:21:in `block in call'
+  activesupport (4.0.0) lib/active_support/tagged_logging.rb:67:in `block in tagged'
+  activesupport (4.0.0) lib/active_support/tagged_logging.rb:25:in `tagged'
+  activesupport (4.0.0) lib/active_support/tagged_logging.rb:67:in `tagged'
+  railties (4.0.0) lib/rails/rack/logger.rb:21:in `call'
+  actionpack (4.0.0) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.0.0) lib/active_support/cache/strategy/local_cache.rb:83:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.0.0) lib/action_dispatch/middleware/static.rb:64:in `call'
+  railties (4.0.0) lib/rails/engine.rb:511:in `call'
+  railties (4.0.0) lib/rails/application.rb:97:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /Users/zhanghao/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/2.0.0/webrick/httpserver.rb:138:in `service'
+  /Users/zhanghao/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/2.0.0/webrick/httpserver.rb:94:in `run'
+  /Users/zhanghao/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/2.0.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /Users/zhanghao/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/gems/2.0.0/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.3ms)
+  Rendered /Users/zhanghao/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/gems/2.0.0/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/routes/_route.html.erb (4.6ms)
+  Rendered /Users/zhanghao/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/gems/2.0.0/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.6ms)
+  Rendered /Users/zhanghao/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/gems/2.0.0/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (35.6ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-07-12 01:45:11 +0800
+Processing by Rails::WelcomeController#index as HTML
+  Rendered /Users/zhanghao/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/gems/2.0.0/gems/railties-4.0.0/lib/rails/templates/rails/welcome/index.html.erb (0.1ms)
+Completed 200 OK in 45ms (Views: 41.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/flight" for 127.0.0.1 at 2013-07-12 01:45:21 +0800
+
+ActionController::RoutingError (No route matches [GET] "/flight"):
+  actionpack (4.0.0) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.0.0) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.0.0) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.0.0) lib/rails/rack/logger.rb:21:in `block in call'
+  activesupport (4.0.0) lib/active_support/tagged_logging.rb:67:in `block in tagged'
+  activesupport (4.0.0) lib/active_support/tagged_logging.rb:25:in `tagged'
+  activesupport (4.0.0) lib/active_support/tagged_logging.rb:67:in `tagged'
+  railties (4.0.0) lib/rails/rack/logger.rb:21:in `call'
+  actionpack (4.0.0) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.0.0) lib/active_support/cache/strategy/local_cache.rb:83:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.0.0) lib/action_dispatch/middleware/static.rb:64:in `call'
+  railties (4.0.0) lib/rails/engine.rb:511:in `call'
+  railties (4.0.0) lib/rails/application.rb:97:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /Users/zhanghao/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/2.0.0/webrick/httpserver.rb:138:in `service'
+  /Users/zhanghao/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/2.0.0/webrick/httpserver.rb:94:in `run'
+  /Users/zhanghao/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/2.0.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /Users/zhanghao/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/gems/2.0.0/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/_trace.erb (8.3ms)
+  Rendered /Users/zhanghao/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/gems/2.0.0/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/routes/_route.html.erb (4.5ms)
+  Rendered /Users/zhanghao/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/gems/2.0.0/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/routes/_table.html.erb (3.4ms)
+  Rendered /Users/zhanghao/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/gems/2.0.0/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (97.8ms)
+
+
+Started GET "/flight" for 127.0.0.1 at 2013-07-12 01:54:36 +0800
+
+ActionController::RoutingError (No route matches [GET] "/flight"):
+  actionpack (4.0.0) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.0.0) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.0.0) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.0.0) lib/rails/rack/logger.rb:21:in `block in call'
+  activesupport (4.0.0) lib/active_support/tagged_logging.rb:67:in `block in tagged'
+  activesupport (4.0.0) lib/active_support/tagged_logging.rb:25:in `tagged'
+  activesupport (4.0.0) lib/active_support/tagged_logging.rb:67:in `tagged'
+  railties (4.0.0) lib/rails/rack/logger.rb:21:in `call'
+  actionpack (4.0.0) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.0.0) lib/active_support/cache/strategy/local_cache.rb:83:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.0.0) lib/action_dispatch/middleware/static.rb:64:in `call'
+  railties (4.0.0) lib/rails/engine.rb:511:in `call'
+  railties (4.0.0) lib/rails/application.rb:97:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /Users/zhanghao/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/2.0.0/webrick/httpserver.rb:138:in `service'
+  /Users/zhanghao/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/2.0.0/webrick/httpserver.rb:94:in `run'
+  /Users/zhanghao/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/2.0.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /Users/zhanghao/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/gems/2.0.0/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/_trace.erb (3.6ms)
+  Rendered /Users/zhanghao/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/gems/2.0.0/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/routes/_route.html.erb (4.6ms)
+  Rendered /Users/zhanghao/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/gems/2.0.0/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/routes/_table.html.erb (2.8ms)
+  Rendered /Users/zhanghao/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/gems/2.0.0/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (52.0ms)
+
+
+Started GET "/flight" for 127.0.0.1 at 2013-07-12 01:54:39 +0800
+
+ActionController::RoutingError (No route matches [GET] "/flight"):
+  actionpack (4.0.0) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.0.0) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.0.0) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.0.0) lib/rails/rack/logger.rb:21:in `block in call'
+  activesupport (4.0.0) lib/active_support/tagged_logging.rb:67:in `block in tagged'
+  activesupport (4.0.0) lib/active_support/tagged_logging.rb:25:in `tagged'
+  activesupport (4.0.0) lib/active_support/tagged_logging.rb:67:in `tagged'
+  railties (4.0.0) lib/rails/rack/logger.rb:21:in `call'
+  actionpack (4.0.0) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.0.0) lib/active_support/cache/strategy/local_cache.rb:83:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.0.0) lib/action_dispatch/middleware/static.rb:64:in `call'
+  railties (4.0.0) lib/rails/engine.rb:511:in `call'
+  railties (4.0.0) lib/rails/application.rb:97:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /Users/zhanghao/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/2.0.0/webrick/httpserver.rb:138:in `service'
+  /Users/zhanghao/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/2.0.0/webrick/httpserver.rb:94:in `run'
+  /Users/zhanghao/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/2.0.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /Users/zhanghao/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/gems/2.0.0/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/_trace.erb (2.6ms)
+  Rendered /Users/zhanghao/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/gems/2.0.0/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/routes/_route.html.erb (3.7ms)
+  Rendered /Users/zhanghao/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/gems/2.0.0/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/routes/_table.html.erb (2.3ms)
+  Rendered /Users/zhanghao/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/gems/2.0.0/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (62.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-07-12 02:14:08 +0800
+Processing by Rails::WelcomeController#index as HTML
+  Rendered /Users/zhanghao/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/gems/2.0.0/gems/railties-4.0.0/lib/rails/templates/rails/welcome/index.html.erb (0.1ms)
+Completed 200 OK in 62ms (Views: 60.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/flights" for 127.0.0.1 at 2013-07-12 02:14:33 +0800
+Processing by FlightsController#index as HTML
+  [1m[35mFlight Load (1.0ms)[0m  SELECT "flights".* FROM "flights"
+  Rendered flights/index.html.erb within layouts/application (8.8ms)
+Completed 200 OK in 21ms (Views: 18.6ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-07-12 02:14:33 +0800
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-07-12 02:14:33 +0800
+
+
+Started GET "/assets/seats.css?body=1" for 127.0.0.1 at 2013-07-12 02:14:34 +0800
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-07-12 02:14:34 +0800
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-07-12 02:14:34 +0800
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-07-12 02:14:34 +0800
+
+
+Started GET "/assets/seats.js?body=1" for 127.0.0.1 at 2013-07-12 02:14:34 +0800
+
+
+Started GET "/assets/flights.css?body=1" for 127.0.0.1 at 2013-07-12 02:14:34 +0800
+
+
+Started GET "/assets/flights.js?body=1" for 127.0.0.1 at 2013-07-12 02:14:34 +0800
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2013-07-12 02:14:34 +0800
+
+
+Started GET "/flights/1" for 127.0.0.1 at 2013-07-12 02:14:49 +0800
+Processing by FlightsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mFlight Load (0.3ms)[0m  [1mSELECT "flights".* FROM "flights" WHERE "flights"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  Rendered flights/_new_seat.html.erb (60.0ms)
+  Rendered flights/show.html.erb within layouts/application (68.3ms)
+Completed 200 OK in 94ms (Views: 90.8ms | ActiveRecord: 0.3ms)
+
+
+Started POST "/seats" for 127.0.0.1 at 2013-07-12 02:15:08 +0800
+Processing by SeatsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"RgyzSKU2BIztrCx+DjJpjT3Bdb9OpOCknNtvVWGm/+E=", "seat"=>{"flight_id"=>"1", "name"=>"DDD", "baggage"=>"DDDD"}, "commit"=>"Create Seat"}
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36mSQL (0.8ms)[0m  [1mINSERT INTO "seats" ("baggage", "created_at", "flight_id", "name", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["baggage", #<BigDecimal:7fa59cd72aa0,'0.0',9(9)>], ["created_at", Thu, 11 Jul 2013 18:15:08 UTC +00:00], ["flight_id", 1], ["name", "DDD"], ["updated_at", Thu, 11 Jul 2013 18:15:08 UTC +00:00]]
+  [1m[35m (1.4ms)[0m  commit transaction
+Redirected to http://0.0.0.0:3000/seats/4
+Completed 302 Found in 10ms (ActiveRecord: 2.4ms)
+
+
+Started GET "/seats/4" for 127.0.0.1 at 2013-07-12 02:15:08 +0800
+Processing by SeatsController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mSeat Load (0.2ms)[0m  [1mSELECT "seats".* FROM "seats" WHERE "seats"."id" = ? LIMIT 1[0m  [["id", "4"]]
+  Rendered seats/show.html.erb within layouts/application (1.3ms)
+Completed 200 OK in 56ms (Views: 48.9ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-07-12 02:15:08 +0800
+
+
+Started GET "/assets/seats.css?body=1" for 127.0.0.1 at 2013-07-12 02:15:08 +0800
+
+
+Started GET "/assets/flights.js?body=1" for 127.0.0.1 at 2013-07-12 02:15:08 +0800
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-07-12 02:15:08 +0800
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-07-12 02:15:08 +0800
+
+
+Started GET "/assets/flights.css?body=1" for 127.0.0.1 at 2013-07-12 02:15:08 +0800
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-07-12 02:15:08 +0800
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2013-07-12 02:15:08 +0800
+
+
+Started GET "/assets/seats.js?body=1" for 127.0.0.1 at 2013-07-12 02:15:08 +0800
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-07-12 02:15:08 +0800
+
+
+Started GET "/seats" for 127.0.0.1 at 2013-07-12 02:15:10 +0800
+Processing by SeatsController#index as HTML
+  [1m[35mSeat Load (0.6ms)[0m  SELECT "seats".* FROM "seats"
+  Rendered seats/index.html.erb within layouts/application (8.2ms)
+Completed 200 OK in 51ms (Views: 46.3ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/seats/2" for 127.0.0.1 at 2013-07-12 02:15:15 +0800
+Processing by SeatsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mSeat Load (0.2ms)[0m  [1mSELECT "seats".* FROM "seats" WHERE "seats"."id" = ? LIMIT 1[0m  [["id", "2"]]
+  Rendered seats/show.html.erb within layouts/application (2.7ms)
+Completed 200 OK in 102ms (Views: 99.6ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/seats" for 127.0.0.1 at 2013-07-12 02:15:17 +0800
+Processing by SeatsController#index as HTML
+  [1m[35mSeat Load (0.4ms)[0m  SELECT "seats".* FROM "seats"
+  Rendered seats/index.html.erb within layouts/application (5.4ms)
+Completed 200 OK in 22ms (Views: 20.1ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/seats/3" for 127.0.0.1 at 2013-07-12 02:15:19 +0800
+Processing by SeatsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mSeat Load (0.3ms)[0m  [1mSELECT "seats".* FROM "seats" WHERE "seats"."id" = ? LIMIT 1[0m  [["id", "3"]]
+  Rendered seats/show.html.erb within layouts/application (1.2ms)
+Completed 200 OK in 17ms (Views: 12.6ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/seats" for 127.0.0.1 at 2013-07-12 02:15:20 +0800
+Processing by SeatsController#index as HTML
+  [1m[35mSeat Load (3.6ms)[0m  SELECT "seats".* FROM "seats"
+  Rendered seats/index.html.erb within layouts/application (16.2ms)
+Completed 200 OK in 40ms (Views: 34.9ms | ActiveRecord: 3.6ms)
+
+
+Started GET "/flights" for 127.0.0.1 at 2013-07-12 02:15:25 +0800
+Processing by FlightsController#index as HTML
+  [1m[36mFlight Load (0.3ms)[0m  [1mSELECT "flights".* FROM "flights"[0m
+  Rendered flights/index.html.erb within layouts/application (12.0ms)
+Completed 200 OK in 25ms (Views: 23.5ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/flights.css?body=1" for 127.0.0.1 at 2013-07-12 02:15:25 +0800
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-07-12 02:15:25 +0800
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-07-12 02:15:25 +0800
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-07-12 02:15:25 +0800
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2013-07-12 02:15:25 +0800
+
+
+Started GET "/assets/seats.css?body=1" for 127.0.0.1 at 2013-07-12 02:15:25 +0800
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-07-12 02:15:25 +0800
+
+
+Started GET "/assets/flights.js?body=1" for 127.0.0.1 at 2013-07-12 02:15:25 +0800
+
+
+Started GET "/assets/seats.js?body=1" for 127.0.0.1 at 2013-07-12 02:15:25 +0800
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-07-12 02:15:25 +0800
+
+
+Started GET "/flights/1" for 127.0.0.1 at 2013-07-12 02:15:27 +0800
+Processing by FlightsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mFlight Load (0.2ms)[0m  SELECT "flights".* FROM "flights" WHERE "flights"."id" = ? LIMIT 1  [["id", "1"]]
+  Rendered flights/_new_seat.html.erb (6.3ms)
+  Rendered flights/show.html.erb within layouts/application (11.3ms)
+Completed 200 OK in 25ms (Views: 22.9ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/flights/1" for 127.0.0.1 at 2013-07-12 02:16:12 +0800
+Processing by FlightsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mFlight Load (0.3ms)[0m  [1mSELECT "flights".* FROM "flights" WHERE "flights"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  Rendered flights/_new_seat.html.erb (14.6ms)
+  Rendered flights/show.html.erb within layouts/application (24.4ms)
+Completed 200 OK in 88ms (Views: 34.6ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/flights.css?body=1" for 127.0.0.1 at 2013-07-12 02:16:12 +0800
+
+
+Started GET "/assets/seats.css?body=1" for 127.0.0.1 at 2013-07-12 02:16:12 +0800
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-07-12 02:16:12 +0800
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-07-12 02:16:12 +0800
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-07-12 02:16:12 +0800
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2013-07-12 02:16:12 +0800
+
+
+Started GET "/assets/flights.js?body=1" for 127.0.0.1 at 2013-07-12 02:16:12 +0800
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-07-12 02:16:12 +0800
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-07-12 02:16:12 +0800
+
+
+Started GET "/assets/seats.js?body=1" for 127.0.0.1 at 2013-07-12 02:16:12 +0800
+
+
+Started GET "/flights/1" for 127.0.0.1 at 2013-07-12 02:20:31 +0800
+Processing by FlightsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mFlight Load (0.2ms)[0m  SELECT "flights".* FROM "flights" WHERE "flights"."id" = ? LIMIT 1  [["id", "1"]]
+  Rendered flights/_new_seat.html.erb (10.7ms)
+  Rendered flights/show.html.erb within layouts/application (13.2ms)
+Completed 200 OK in 33ms (Views: 26.3ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-07-12 02:20:31 +0800
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-07-12 02:20:31 +0800
+
+
+Started GET "/assets/seats.css?body=1" for 127.0.0.1 at 2013-07-12 02:20:31 +0800
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2013-07-12 02:20:31 +0800
+
+
+Started GET "/assets/flights.css?body=1" for 127.0.0.1 at 2013-07-12 02:20:31 +0800
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-07-12 02:20:31 +0800
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-07-12 02:20:31 +0800
+
+
+Started GET "/assets/flights.js?body=1" for 127.0.0.1 at 2013-07-12 02:20:31 +0800
+
+
+Started GET "/assets/seats.js?body=1" for 127.0.0.1 at 2013-07-12 02:20:31 +0800
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-07-12 02:20:31 +0800
+
+
+Started GET "/flights/1" for 127.0.0.1 at 2013-07-12 02:22:06 +0800
+Processing by FlightsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mFlight Load (0.2ms)[0m  [1mSELECT "flights".* FROM "flights" WHERE "flights"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  Rendered flights/_new_seat.html.erb (19.9ms)
+  Rendered flights/show.html.erb within layouts/application (25.5ms)
+Completed 200 OK in 52ms (Views: 42.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/flights.css?body=1" for 127.0.0.1 at 2013-07-12 02:22:06 +0800
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-07-12 02:22:06 +0800
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2013-07-12 02:22:06 +0800
+
+
+Started GET "/assets/seats.css?body=1" for 127.0.0.1 at 2013-07-12 02:22:06 +0800
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-07-12 02:22:06 +0800
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-07-12 02:22:06 +0800
+
+
+Started GET "/assets/flights.js?body=1" for 127.0.0.1 at 2013-07-12 02:22:06 +0800
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-07-12 02:22:06 +0800
+
+
+Started GET "/assets/seats.js?body=1" for 127.0.0.1 at 2013-07-12 02:22:06 +0800
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-07-12 02:22:06 +0800
+
+
+Started POST "/seats" for 127.0.0.1 at 2013-07-12 02:22:16 +0800
+Processing by SeatsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"RgyzSKU2BIztrCx+DjJpjT3Bdb9OpOCknNtvVWGm/+E=", "seat"=>{"flight_id"=>"EEEE", "name"=>"EEE", "baggage"=>"EEEE"}, "commit"=>"Create Seat"}
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (26.9ms)[0m  [1mINSERT INTO "seats" ("baggage", "created_at", "flight_id", "name", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["baggage", #<BigDecimal:7fa59ccfcd00,'0.0',9(9)>], ["created_at", Thu, 11 Jul 2013 18:22:16 UTC +00:00], ["flight_id", 0], ["name", "EEE"], ["updated_at", Thu, 11 Jul 2013 18:22:16 UTC +00:00]]
+  [1m[35m (4.2ms)[0m  commit transaction
+Redirected to http://0.0.0.0:3000/seats/5
+Completed 302 Found in 44ms (ActiveRecord: 31.2ms)
+
+
+Started GET "/seats/5" for 127.0.0.1 at 2013-07-12 02:22:17 +0800
+Processing by SeatsController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mSeat Load (0.3ms)[0m  [1mSELECT "seats".* FROM "seats" WHERE "seats"."id" = ? LIMIT 1[0m  [["id", "5"]]
+  Rendered seats/show.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 97ms (Views: 78.7ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-07-12 02:22:17 +0800
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2013-07-12 02:22:17 +0800
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-07-12 02:22:17 +0800
+
+
+Started GET "/assets/seats.css?body=1" for 127.0.0.1 at 2013-07-12 02:22:17 +0800
+
+
+Started GET "/assets/flights.css?body=1" for 127.0.0.1 at 2013-07-12 02:22:17 +0800
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-07-12 02:22:17 +0800
+
+
+Started GET "/assets/seats.js?body=1" for 127.0.0.1 at 2013-07-12 02:22:17 +0800
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-07-12 02:22:17 +0800
+
+
+Started GET "/assets/flights.js?body=1" for 127.0.0.1 at 2013-07-12 02:22:17 +0800
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-07-12 02:22:17 +0800
+
+
+Started GET "/seats" for 127.0.0.1 at 2013-07-12 02:22:18 +0800
+Processing by SeatsController#index as HTML
+  [1m[35mSeat Load (0.2ms)[0m  SELECT "seats".* FROM "seats"
+  Rendered seats/index.html.erb within layouts/application (56.0ms)
+Completed 200 OK in 64ms (Views: 63.1ms | ActiveRecord: 0.2ms)
