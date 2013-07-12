@@ -12,8 +12,7 @@
       </ul>
     </div>
   <% end %>
-  <%= f.label:flight_id %><br />
-  <%= f.text_field :flight_id %>
+  <%= f.hidden_field :flight_id %>
   <div class="field">
     <%= f.label :name %><br />
     <%= f.text_field :name %>
@@ -23,6 +22,6 @@
     <%= f.text_field :baggage %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Create"%>
   </div>
 <% end %>
