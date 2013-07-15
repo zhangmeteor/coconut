@@ -1,0 +1,4 @@
+$("#seats").html("<%= escape_javascript( render :partial => '/flights/seat_list', :locals =>{:seats=>@flight.seats}) %>");
+$('#flash').html("<%= escape_javascript raw(flash_display) %>");
+$('html, body').delay(700).animate({scrollTop:0}, 900);
+$("#success").html("Ticked Booked Successfully!!").delay(2400).toggle(showOrHide);

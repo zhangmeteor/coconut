@@ -30,9 +30,11 @@ class SeatsController < ApplicationController
       if @seat.save
         format.html { redirect_to @seat, notice: 'Seat was successfully created.' }
         format.json { render action: 'show', status: :created, location: @seat }
+        format.js
       else
         format.html { render action: 'new' }
         format.json { render json: @seat.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
@@ -58,8 +60,17 @@ class SeatsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to seats_url }
       format.json { head :no_content }
+      format.js
     end
   end
+
+  #
+  def flight_seats
+    @flight = Flight.find (params[:flight_id])
+    respond_to do |format|
+      format.js
+    end
+end
 
   private
     # Use callbacks to share common setup or constraints between actions.

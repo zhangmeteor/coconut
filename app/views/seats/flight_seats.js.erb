@@ -1,0 +1,1 @@
+$("#seats").html("<%= escape_javascript( render :partial => '/flights/seat_list', :locals =>{:seats=>@flight.seats}) %>");

@@ -1,4 +1,6 @@
 Coconut::Application.routes.draw do
+  match '/flights/:flight_id/seats'=> 'seats#flight_seats' ,via:[:get,:post]
+
   resources :seats
 
   resources :flights
@@ -43,7 +45,7 @@ Coconut::Application.routes.draw do
   #       get 'recent', on: :collection
   #     end
   #   end
-  
+
   # Example resource route with concerns:
   #   concern :toggleable do
   #     post 'toggle'
